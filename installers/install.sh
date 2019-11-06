@@ -31,9 +31,19 @@ function install_brew_taps() {
 
 function install_java{
 
-	#install java
-		brew cask install java
-		brew cask install java8
+	  #install OpenJDK - Java
+		brew tap AdoptOpenJDK/openjdk
+
+		#all Versions
+		startVersion=8
+		endVersion=9
+
+    brew cask install adoptopenjdk8
+    brew cask install adoptopenjdk9
+    brew cask install adoptopenjdk10
+    brew cask install adoptopenjdk11
+    brew cask install adoptopenjdk12
+    brew cask install adoptopenjdk13
 
 	#Install Jenv
 		brew install jenv
@@ -45,12 +55,21 @@ function install_java{
 		exec $SHELL -l
 
 		JAVA_INSTALL_PATH=/Library/Java/JavaVirtualMachines
-		jenv add $JAVA_INSTALL_PATH/openjdk-11.0.2.jdk/Contents/Home/
-		jenv add $JAVA_INSTALL_PATH/jdk1.8.0_202.jdk/Contents/Home/
+
+		#jenv add $JAVA_INSTALL_PATH/jdk1.8.0_202.jdk/Contents/Home/
+    jenv add $JAVA_INSTALL_PATH/adoptopenjdk-8.jdk/Contents/Home/
+		jenv add $JAVA_INSTALL_PATH/adoptopenjdk-9.jdk/Contents/Home/
+		jenv add $JAVA_INSTALL_PATH/adoptopenjdk-10.jdk/Contents/Home/
+		jenv add $JAVA_INSTALL_PATH/adoptopenjdk-11.jdk/Contents/Home/
+		jenv add $JAVA_INSTALL_PATH/adoptopenjdk-12.jdk/Contents/Home/
+		jenv add $JAVA_INSTALL_PATH/adoptopenjdk-13.jdk/Contents/Home/
+
 		jenv global 1.8.0.202
 
 		#Rest of stuff
 		brew install gradle
+
+		brew install node
 }
 
 
@@ -95,6 +114,6 @@ function setup_shortcuts{
 function setup_system_settings{
 	#Cursor Speed
 	defaults write NSGlobalDomain KeyRepeat -int 1
-	#Add executables location
+
 }
 
